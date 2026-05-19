@@ -328,15 +328,9 @@ const GoldBand = () =>
 const TrustStrip = () =>
 <Section bg={C.creamDeep} py={36}>
     <div className="mwc-trust-strip" style={{
-    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-    gap: 30, flexWrap: 'wrap'
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    gap: 48, flexWrap: 'wrap'
   }}>
-      <div style={{
-      fontFamily: f.body, fontSize: 11, fontWeight: 500,
-      letterSpacing: '0.32em', textTransform: 'uppercase', color: C.ink2
-    }}>
-        Built selling to & for
-      </div>
       {['Oracle', 'Guitar Center', 'Gap Inc.', 'NVIDIA', 'AMD', 'Nordstrom'].map((c) =>
     <div key={c} style={{
       fontFamily: f.display, fontSize: 22, color: C.ink, letterSpacing: '0.01em',
