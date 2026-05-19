@@ -158,9 +158,7 @@ const ContactFooterShort = () => (
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <div style={{ width: 52, height: 52, borderRadius: '50%', background: C.cream, padding: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src="assets/logo2.png" alt="MW" style={{ width: '100%', height: '100%' }} />
-          </div>
+          <img src="assets/logo2.png" alt="MW" style={{ width: 52, height: 52, display: 'block' }} />
           <div>
             <div style={{ fontFamily: f.display, fontSize: 22, lineHeight: 1 }}>Michelle Wolff</div>
             <div style={{ fontFamily: f.body, fontSize: 10, letterSpacing: '0.32em', color: C.accent, marginTop: 4, fontWeight: 600 }}>CONSULTING</div>

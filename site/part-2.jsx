@@ -178,8 +178,8 @@ const About = () =>
         {/* Logo badge */}
         <div className="mwc-about-logo-badge" style={{
         position: 'absolute', bottom: -32, left: -32,
-        width: 96, height: 96, borderRadius: '50%',
-        boxShadow: `0 0 0 3px ${C.accent}, 0 12px 30px rgba(0,0,0,0.18)`
+        width: 96, height: 96,
+        filter: 'drop-shadow(0 12px 30px rgba(0,0,0,0.18))'
       }}>
           <img src="assets/logo2.png" alt="MW" style={{ width: '100%', height: '100%', display: 'block' }} />
         </div>
@@ -419,9 +419,7 @@ const FooterCTA = () =>
     }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 56, height: 56, borderRadius: '50%', background: C.cream, padding: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="assets/logo2.png" alt="MW" style={{ width: '100%', height: '100%' }} />
-            </div>
+            <img src="assets/logo2.png" alt="MW" style={{ width: 56, height: 56, display: 'block' }} />
             <div>
               <div style={{ fontFamily: f.display, fontSize: 22, lineHeight: 1 }}>Michelle Wolff</div>
               <div style={{ fontFamily: f.body, fontSize: 10, letterSpacing: '0.32em', color: C.accent, marginTop: 4, fontWeight: 600 }}>CONSULTING</div>
