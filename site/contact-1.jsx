@@ -14,7 +14,7 @@ const ContactNav = () => (
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
     }}>
       <a href="index.html" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none', flexShrink: 0 }}>
-        <img src="assets/logo.png" alt="MW Consulting" style={{ width: 44, height: 44, borderRadius: '50%' }} />
+        <img src="assets/logo2.png" alt="MW Consulting" style={{ width: 44, height: 44 }} />
         <div style={{ whiteSpace: 'nowrap' }}>
           <div style={{ fontFamily: f.display, fontSize: 20, color: C.ink, lineHeight: 1, letterSpacing: '0.01em' }}>
             Michelle Wolff
