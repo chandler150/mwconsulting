@@ -167,10 +167,10 @@ const ContactFooterShort = () => (
           </div>
         </div>
         <div style={{ display: 'flex', gap: 36, fontFamily: f.body, fontSize: 13, color: 'rgba(250,246,237,0.78)' }}>
-          <a href="Michelle Wolff Consulting.html#approach" style={{ color: 'inherit', textDecoration: 'none' }}>Approach</a>
-          <a href="Michelle Wolff Consulting.html#services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
-          <a href="Michelle Wolff Consulting.html#about" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
-          <a href="Michelle Wolff Consulting.html#results" style={{ color: 'inherit', textDecoration: 'none' }}>Results</a>
+          <a href="index.html#approach" style={{ color: 'inherit', textDecoration: 'none' }}>Approach</a>
+          <a href="index.html#services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
+          <a href="index.html#about" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
+          <a href="index.html#results" style={{ color: 'inherit', textDecoration: 'none' }}>Results</a>
         </div>
       </div>
       <div className="mwc-section-pad" style={{

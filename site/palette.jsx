@@ -63,16 +63,16 @@ const ACCENT_KEY = 'mwc-palette';
 const BG_KEY = 'mwc-bg';
 
 function getStoredAccent() {
-  try { const v = localStorage.getItem(ACCENT_KEY); return ACCENTS[v] ? v : 'gold'; } catch { return 'gold'; }
+  try { const v = localStorage.getItem(ACCENT_KEY); return ACCENTS[v] ? v : 'red'; } catch { return 'red'; }
 }
 function getStoredBg() {
-  try { const v = localStorage.getItem(BG_KEY); return BACKGROUNDS[v] ? v : 'cream'; } catch { return 'cream'; }
+  try { const v = localStorage.getItem(BG_KEY); return BACKGROUNDS[v] ? v : 'ivory'; } catch { return 'ivory'; }
 }
 
 // Apply both into global C (mutated in place) + CSS vars + body bg.
 function applyPalette(accentName = getStoredAccent(), bgName = getStoredBg()) {
-  const a = ACCENTS[accentName] || ACCENTS.gold;
-  const b = BACKGROUNDS[bgName] || BACKGROUNDS.cream;
+  const a = ACCENTS[accentName] || ACCENTS.red;
+  const b = BACKGROUNDS[bgName] || BACKGROUNDS.ivory;
   const merged = { ...a.colors, ...b.colors, paper: '#ffffff' };
   if (typeof C !== 'undefined') Object.assign(C, merged);
   try {

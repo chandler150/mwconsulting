@@ -183,9 +183,27 @@ const Section = ({ id, children, bg = C.cream, color = C.ink, style = {}, py = 1
 const Nav = () => {
   // On home page anchors stay relative; on subpages they need to point back home first.
   const isHome = typeof window !== 'undefined' &&
-    /Consulting\.html$|\/$|index\.html$/.test(window.location.pathname);
-  const homePath = 'Michelle Wolff Consulting.html';
+    /\/$|index\.html$/.test(window.location.pathname);
+  const homePath = 'index.html';
   const anchorHref = (h) => isHome ? `#${h}` : `${homePath}#${h}`;
+
+  // After React mounts, scroll to the URL hash if present. The browser's native
+  // scroll-to-hash runs before React has rendered the target section, so we redo it.
+  React.useEffect(() => {
+    if (!window.location.hash) return;
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    let attempts = 0;
+    const tryScroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ block: 'start' });
+      } else if (attempts++ < 20) {
+        requestAnimationFrame(tryScroll);
+      }
+    };
+    requestAnimationFrame(tryScroll);
+  }, []);
+
   return (
 <nav style={{
   position: 'sticky', top: 0, zIndex: 50,
