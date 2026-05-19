@@ -222,7 +222,6 @@ const CaseStudyCTA = ({ headline = "Got a similar challenge?", subhead = "Book a
       </p>
       <div className="mwc-form-actions" style={{ marginTop: 36, display: 'inline-flex', alignItems: 'center', gap: 18, flexWrap: 'wrap', justifyContent: 'center' }}>
         <Btn href="contact.html" size="lg">Book a Discovery Call</Btn>
-        <Btn href="work.html" variant="outline" size="lg">More work →</Btn>
       </div>
     </div>
   </section>
@@ -249,7 +248,6 @@ const SubpageFooter = () => (
         <div style={{ display: 'flex', gap: 32, fontFamily: f.body, fontSize: 13, color: 'rgba(250,246,237,0.78)', flexWrap: 'wrap' }}>
           <a href="index.html#approach" style={{ color: 'inherit', textDecoration: 'none' }}>Approach</a>
           <a href="index.html#services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
-          <a href="work.html" style={{ color: 'inherit', textDecoration: 'none' }}>Work</a>
           <a href="index.html#about" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
           <a href="contact.html" style={{ color: 'inherit', textDecoration: 'none' }}>Contact</a>
         </div>

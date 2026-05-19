@@ -232,7 +232,6 @@ const Nav = () => {
           {[
             { label: 'Approach', href: anchorHref('approach') },
             { label: 'Services', href: anchorHref('services') },
-            { label: 'Work',     href: 'work.html' },
             { label: 'About',    href: anchorHref('about') },
             { label: 'Results',  href: anchorHref('results') },
           ].map((l) =>

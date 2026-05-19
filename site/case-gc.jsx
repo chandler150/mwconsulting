@@ -7,14 +7,6 @@ const GCHero = () => (
     }} />
     <div className="mwc-section-pad" style={{ maxWidth: 1240, margin: '0 auto', padding: '0 48px', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
-        <a href="work.html" style={{
-          fontFamily: f.body, fontSize: 12, fontWeight: 500, letterSpacing: '0.22em',
-          textTransform: 'uppercase', color: C.muted, textDecoration: 'none',
-          display: 'inline-flex', alignItems: 'center', gap: 8,
-        }}>
-          ← Selected Work
-        </a>
-        <GoldRule width={36} />
         <span style={{ fontFamily: f.body, fontSize: 12, fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: C.accent }}>
           Case 01
         </span>
