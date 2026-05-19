@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book a Call · Michelle Wolff Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="site/responsive.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #faf6ed; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1c1a17;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { transition: opacity .2s, color .2s; }
+    a:hover { opacity: 0.85; }
+    h1, h2, h3 { margin: 0; }
+    html { scroll-behavior: smooth; }
+    /* Form focus state */
+    .mwc-input:focus { border-bottom-color: var(--c-accent, #b8965a) !important; }
+    .mwc-input { transition: border-color .15s; }
+    textarea.mwc-input:focus { border-color: var(--c-accent, #b8965a) !important; outline: 1px solid var(--c-accent, #b8965a); outline-offset: -1px; }
+    /* Contact card hover */
+    .mwc-contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.07);
+    }
+    @media (max-width: 960px) {
+      .mwc-grid-collapse { grid-template-columns: 1fr !important; }
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="site/part-1.jsx"></script>
+  <script type="text/babel" src="site/part-2.jsx"></script>
+  <script type="text/babel" src="site/palette.jsx"></script>
+  <script type="text/babel" src="site/contact-1.jsx"></script>
+  <script type="text/babel" src="site/contact-2.jsx"></script>
+  <script type="text/babel" src="site/contact-3.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="site/tweaks.jsx"></script>
+
+  <script type="text/babel">
+    function ContactApp() {
+      // Subscribe to palette so the whole page re-renders on swap.
+      const { accent, bg } = usePalette();
+      return (
+        <div key={accent + '-' + bg}>
+          <ContactNav />
+          <ContactHero />
+          <Booking />
+          <AltContact />
+          <ContactFAQ />
+          <ContactFooterShort />
+          <SiteTweaks />
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<ContactApp />);
+  </script>
+</body>
+</html>
