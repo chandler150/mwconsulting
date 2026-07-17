@@ -62,11 +62,12 @@ const BACKGROUNDS = {
 const ACCENT_KEY = 'mwc-palette';
 const BG_KEY = 'mwc-bg';
 
+// Locked to Champagne Gold / Warm Cream site-wide — ignore any stored/prior preference.
 function getStoredAccent() {
-  try { const v = localStorage.getItem(ACCENT_KEY); return ACCENTS[v] ? v : 'gold'; } catch { return 'gold'; }
+  return 'gold';
 }
 function getStoredBg() {
-  try { const v = localStorage.getItem(BG_KEY); return BACKGROUNDS[v] ? v : 'cream'; } catch { return 'cream'; }
+  return 'cream';
 }
 
 // Apply both into global C (mutated in place) + CSS vars + body bg.
