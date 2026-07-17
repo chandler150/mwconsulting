@@ -1,0 +1,95 @@
+/* ──────────────────────────────────────────────────────────────
+   Michelle Wolff Consulting — responsive overrides.
+   Used by Home + Contact. Targets className hooks on grid
+   containers, sections, and nav so we can collapse inline
+   grid-template-columns / paddings without rewriting JSX.
+   ─────────────────────────────────────────────────────────── */
+
+/* Section side padding — generous on desktop, tight on mobile */
+.mwc-section-pad { padding-left: 48px !important; padding-right: 48px !important; }
+
+/* Wide nav row */
+.mwc-nav { padding-left: 48px !important; padding-right: 48px !important; }
+
+/* ──────────────  ≤ 980px — small laptop / large tablet ────────────── */
+@media (max-width: 980px) {
+  /* Hide secondary nav links — keep logo + primary CTA */
+  .nav-links { display: none !important; }
+}
+
+/* ──────────────  ≤ 900px — tablet ────────────── */
+@media (max-width: 900px) {
+  /* Two-column splits → single column */
+  .mwc-hero-grid,
+  .mwc-stack,
+  .mwc-stack-2,
+  .mwc-booking-grid {
+    grid-template-columns: 1fr !important;
+    gap: 56px !important;
+  }
+  /* Reduce horizontal pad */
+  .mwc-section-pad { padding-left: 36px !important; padding-right: 36px !important; }
+  .mwc-nav { padding-left: 28px !important; padding-right: 28px !important; }
+  /* Reduce extreme display sizes a touch */
+  .mwc-display-xl { font-size: clamp(44px, 8vw, 70px) !important; }
+}
+
+/* ──────────────  ≤ 760px — small tablet / large phone ────────────── */
+@media (max-width: 760px) {
+  /* Three-column splits → single */
+  .mwc-services,
+  .mwc-stack-3 { grid-template-columns: 1fr !important; gap: 28px !important; }
+  /* Four-up stats → 2x2 */
+  .mwc-stats { grid-template-columns: 1fr 1fr !important; }
+  /* Footer stays 2-col */
+  .mwc-footer { grid-template-columns: 1fr 1fr !important; gap: 32px 24px !important; }
+  /* Trust strip — wrap nicely, shrink company names */
+  .mwc-trust-strip { gap: 14px 22px !important; justify-content: flex-start !important; }
+  .mwc-trust-strip > * { font-size: 16px !important; }
+  /* Section vertical padding compresses */
+  .mwc-section { padding-top: 72px !important; padding-bottom: 72px !important; }
+  /* Reduce horizontal pad further */
+  .mwc-section-pad { padding-left: 28px !important; padding-right: 28px !important; }
+  .mwc-nav { padding-left: 22px !important; padding-right: 22px !important; }
+  /* Headshot widget on Pain — center, lose absolute corner badge offset */
+  .mwc-pain-photo { max-width: 480px; margin: 0 auto; }
+  .mwc-pain-photo-badge { bottom: -22px !important; right: -10px !important; padding: 18px 22px !important; max-width: 220px; }
+  /* About photo: tighten outline frame offset on mobile */
+  .mwc-about-photo-frame { top: 14px !important; left: 14px !important; right: -14px !important; bottom: -14px !important; }
+  .mwc-about-logo-badge { width: 76px !important; height: 76px !important; bottom: -22px !important; left: -16px !important; }
+  /* Booking calendar + summary stack — reduce padding */
+  .mwc-card { padding: 28px !important; }
+  /* Form actions wrap onto two lines if needed */
+  .mwc-form-actions { flex-direction: column !important; align-items: flex-start !important; }
+  /* FAQ question size */
+  .mwc-faq-q { font-size: 20px !important; }
+}
+
+/* ──────────────  ≤ 540px — phones ────────────── */
+@media (max-width: 540px) {
+  .mwc-stats { grid-template-columns: 1fr !important; }
+  .mwc-footer { grid-template-columns: 1fr !important; }
+  .mwc-section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+  .mwc-nav { padding-left: 18px !important; padding-right: 18px !important; }
+  /* Section pad y */
+  .mwc-section { padding-top: 60px !important; padding-bottom: 60px !important; }
+  /* Pain photo full width without badge overhang */
+  .mwc-pain-photo-badge { right: 0 !important; bottom: 0 !important; max-width: 200px !important; padding: 14px 18px !important; }
+  /* Booking time slots → 2 cols instead of 3 to keep tap targets */
+  .mwc-time-grid { grid-template-columns: 1fr 1fr !important; }
+  /* Form select padding tighter */
+  .mwc-card { padding: 24px !important; }
+  /* Bottom-anchored card buttons widen */
+  .mwc-form-actions a { width: 100% !important; justify-content: center !important; }
+  /* Big numbers shrink */
+  .mwc-stat-number { font-size: clamp(48px, 14vw, 64px) !important; }
+}
+
+/* ──────────────  Universal typography that always benefits from fluid sizing ────────────── */
+.mwc-display-hero { font-size: clamp(40px, 7.5vw, 76px) !important; }
+.mwc-display-xl   { font-size: clamp(44px, 8vw, 88px) !important; }
+.mwc-display-lg   { font-size: clamp(36px, 6.5vw, 64px) !important; }
+.mwc-display-md   { font-size: clamp(32px, 5.6vw, 56px) !important; }
+.mwc-display-sm   { font-size: clamp(28px, 4.6vw, 48px) !important; }
+.mwc-display-cta  { font-size: clamp(44px, 9vw, 84px) !important; }
+.mwc-stat-number  { font-size: clamp(48px, 7vw, 72px) !important; }
