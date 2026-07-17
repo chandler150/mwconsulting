@@ -414,10 +414,10 @@ const FooterCTA = () =>
         <div>
           <div style={{ fontFamily: f.body, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: C.accent, fontWeight: 600, marginBottom: 14 }}>Explore</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontFamily: f.body, fontSize: 14, color: 'rgba(250,246,237,0.78)' }}>
-            <a href="#approach" style={{ color: 'inherit', textDecoration: 'none' }}>Approach</a>
-            <a href="#services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
-            <a href="#about" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
-            <a href="#results" style={{ color: 'inherit', textDecoration: 'none' }}>Results</a>
+            <a href="index.html#approach" style={{ color: 'inherit', textDecoration: 'none' }}>Approach</a>
+            <a href="index.html#services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
+            <a href="index.html#about" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
+            <a href="index.html#results" style={{ color: 'inherit', textDecoration: 'none' }}>Results</a>
           </div>
         </div>
         <div>
@@ -425,7 +425,8 @@ const FooterCTA = () =>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontFamily: f.body, fontSize: 14, color: 'rgba(250,246,237,0.78)' }}>
             <a href="https://www.linkedin.com/in/michelle-wolff/" target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
             <span>Instagram</span>
-            <a href="contact.html" style={{ color: 'inherit', textDecoration: 'none' }}>Book</a>
+            <a href="contact.html" style={{ color: 'inherit', textDecoration: 'none' }}>Book a meeting</a>
+            <a href="mailto:michellewolffconsulting@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
           </div>
         </div>
       </div>

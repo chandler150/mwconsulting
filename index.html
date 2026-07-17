@@ -49,6 +49,15 @@
   <script type="text/babel">
     function App() {
       const { accent, bg } = usePalette();
+      // Content renders after load, so the browser's native jump to a #hash
+      // (e.g. arriving on index.html#services from another page) finds nothing.
+      // Re-run the jump once the sections exist.
+      React.useEffect(() => {
+        if (window.location.hash) {
+          const el = document.querySelector(window.location.hash);
+          if (el) setTimeout(() => el.scrollIntoView(), 50);
+        }
+      }, []);
       return (
         <div key={accent + '-' + bg}>
           <Nav />

@@ -19,10 +19,10 @@ const AltContact = () => (
 
       <div className="mwc-stack-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, maxWidth: 760, margin: '0 auto' }}>
         {[
-          { icon: 'mail', label: 'Email', value: 'michellewolffconsulting@gmail.com', sub: "I'll write back within a day.", href: 'mailto:michellewolffconsulting@gmail.com' },
-          { icon: 'linkedin', label: 'LinkedIn', value: 'in/michelle-wolff', sub: 'Connect or DM directly.', href: 'https://www.linkedin.com/in/michelle-wolff/' },
+          { icon: 'mail', value: 'Email', sub: "I'll write back within a day.", href: 'mailto:michellewolffconsulting@gmail.com' },
+          { icon: 'linkedin', value: 'LinkedIn', sub: 'Connect or DM directly.', href: 'https://www.linkedin.com/in/michelle-wolff/' },
         ].map(c => (
-          <a key={c.label} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener" className="mwc-contact-card" style={{
+          <a key={c.value} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener" className="mwc-contact-card" style={{
             background: C.paper, padding: 32, textDecoration: 'none',
             color: C.ink, display: 'block',
             border: `1px solid ${C.cream2}`,
@@ -48,10 +48,7 @@ const AltContact = () => (
                 </>)}
               </svg>
             </div>
-            <div style={{ fontFamily: f.body, fontSize: 11, fontWeight: 600, letterSpacing: '0.32em', textTransform: 'uppercase', color: C.accent }}>
-              {c.label}
-            </div>
-            <div style={{ fontFamily: f.display, fontSize: 24, marginTop: 6, color: C.ink, lineHeight: 1.2, letterSpacing: '-0.005em' }}>
+            <div style={{ fontFamily: f.display, fontSize: 26, color: C.ink, lineHeight: 1.2, letterSpacing: '-0.005em' }}>
               {c.value}
             </div>
             <div style={{ fontFamily: f.body, fontSize: 13, color: C.muted, marginTop: 10 }}>
