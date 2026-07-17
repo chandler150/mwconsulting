@@ -13,7 +13,7 @@ const ContactNav = () => (
       padding: '18px 48px',
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
     }}>
-      <a href="Michelle Wolff Consulting.html" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none', flexShrink: 0 }}>
+      <a href="index.html" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none', flexShrink: 0 }}>
         <img src="assets/logo.png" alt="MW Consulting" style={{ width: 44, height: 44, borderRadius: '50%' }} />
         <div style={{ whiteSpace: 'nowrap' }}>
           <div style={{ fontFamily: f.display, fontSize: 20, color: C.ink, lineHeight: 1, letterSpacing: '0.01em' }}>
@@ -24,7 +24,7 @@ const ContactNav = () => (
           </div>
         </div>
       </a>
-      <a href="Michelle Wolff Consulting.html" style={{
+      <a href="index.html" style={{
         fontFamily: f.body, fontSize: 13, color: C.ink2,
         textDecoration: 'none', letterSpacing: '0.04em',
         display: 'inline-flex', alignItems: 'center', gap: 8,

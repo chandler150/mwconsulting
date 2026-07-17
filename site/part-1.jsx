@@ -184,7 +184,7 @@ const Nav = () => {
   // On home page anchors stay relative; on subpages they need to point back home first.
   const isHome = typeof window !== 'undefined' &&
     /Consulting\.html$|\/$|index\.html$/.test(window.location.pathname);
-  const homePath = 'Michelle Wolff Consulting.html';
+  const homePath = 'index.html';
   const anchorHref = (h) => isHome ? `#${h}` : `${homePath}#${h}`;
   return (
 <nav style={{

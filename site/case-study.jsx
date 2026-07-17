@@ -237,7 +237,7 @@ const SubpageFooter = () => (
         maxWidth: 1240, margin: '0 auto', padding: '0 48px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap',
       }}>
-        <a href="Michelle Wolff Consulting.html" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none', color: C.cream }}>
+        <a href="index.html" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none', color: C.cream }}>
           <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
             <img src="assets/logo.png" alt="MW" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
           </div>
@@ -247,10 +247,10 @@ const SubpageFooter = () => (
           </div>
         </a>
         <div style={{ display: 'flex', gap: 32, fontFamily: f.body, fontSize: 13, color: 'rgba(250,246,237,0.78)', flexWrap: 'wrap' }}>
-          <a href="Michelle Wolff Consulting.html#approach" style={{ color: 'inherit', textDecoration: 'none' }}>Approach</a>
-          <a href="Michelle Wolff Consulting.html#services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
+          <a href="index.html#approach" style={{ color: 'inherit', textDecoration: 'none' }}>Approach</a>
+          <a href="index.html#services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a>
           <a href="work.html" style={{ color: 'inherit', textDecoration: 'none' }}>Work</a>
-          <a href="Michelle Wolff Consulting.html#about" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
+          <a href="index.html#about" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
           <a href="contact.html" style={{ color: 'inherit', textDecoration: 'none' }}>Contact</a>
         </div>
       </div>
