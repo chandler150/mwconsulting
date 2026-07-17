@@ -65,6 +65,9 @@ const CALENDLY_URL = 'https://calendly.com/michellewolffconsulting/30min';
 
 const Booking = () => {
   const widgetRef = React.useRef(null);
+  // Calendly reports its real content height via postMessage; track it so the
+  // widget never scrolls internally on any screen size.
+  const [widgetHeight, setWidgetHeight] = React.useState(980);
   // ?service=... from the Home service cards prefills Calendly's first custom
   // question ("What would you like to talk about?") via the a1 param.
   const presetService = React.useMemo(() => {
@@ -85,14 +88,24 @@ const Booking = () => {
         window.Calendly.initInlineWidget({ url: styledUrl, parentElement: widgetRef.current });
       }
     };
-    if (window.Calendly) { init(); return; }
-    const existing = document.querySelector('script[src*="assets.calendly.com"]');
-    if (existing) { existing.addEventListener('load', init); return; }
-    const s = document.createElement('script');
-    s.src = 'https://assets.calendly.com/assets/external/widget.js';
-    s.async = true;
-    s.onload = init;
-    document.body.appendChild(s);
+    if (window.Calendly) { init(); } else {
+      const existing = document.querySelector('script[src*="assets.calendly.com"]');
+      if (existing) { existing.addEventListener('load', init); } else {
+        const s = document.createElement('script');
+        s.src = 'https://assets.calendly.com/assets/external/widget.js';
+        s.async = true;
+        s.onload = init;
+        document.body.appendChild(s);
+      }
+    }
+    const onMessage = (e) => {
+      if (e.origin === 'https://calendly.com' && e.data?.event === 'calendly.page_height') {
+        const h = parseInt(e.data.payload?.height, 10);
+        if (h > 0) setWidgetHeight(Math.max(h, 500));
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
   }, []);
 
   return (
@@ -105,7 +118,7 @@ const Booking = () => {
             <div style={{ padding: '24px 24px 0' }}>
               <Kicker style={{ fontSize: 11 }}>Pick a day &amp; time</Kicker>
             </div>
-            <div ref={widgetRef} style={{ minWidth: 300, height: 760 }} />
+            <div ref={widgetRef} style={{ minWidth: 300, height: widgetHeight, transition: 'height .25s' }} />
           </div>
 
           {/* What-to-expect card */}
@@ -136,9 +149,8 @@ const Booking = () => {
               )}
             </div>
             <div style={{ fontFamily: f.body, fontSize: 13, color: C.muted, lineHeight: 1.7, marginTop: 26, paddingTop: 22, borderTop: `1px solid ${C.cream2}`, position: 'relative' }}>
-              Bring your goals, your current outreach, your questions. You'll get a
-              confirmation email the moment you book, and a personal note from
-              Michelle before the call.
+              You'll get a confirmation email the moment you book, and a personal
+              note from Michelle before the call.
             </div>
           </div>
 

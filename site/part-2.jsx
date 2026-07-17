@@ -395,7 +395,7 @@ const FooterCTA = () =>
     <div style={{ background: C.ink, color: C.cream, padding: '60px 0 36px' }}>
       <div className="mwc-section-pad mwc-footer" style={{
       maxWidth: 1240, margin: '0 auto', padding: '0 48px',
-      display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr', gap: 48, alignItems: 'start'
+      display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr', gap: 48, alignItems: 'start'
     }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
@@ -421,19 +421,11 @@ const FooterCTA = () =>
           </div>
         </div>
         <div>
-          <div style={{ fontFamily: f.body, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: C.accent, fontWeight: 600, marginBottom: 14 }}>Contact</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontFamily: f.body, fontSize: 14, color: 'rgba(250,246,237,0.78)' }}>
-            <span>michelle.wolff57@gmail.com</span>
-            <span>000-000-0000</span>
-            <span>Los Angeles, CA</span>
-          </div>
-        </div>
-        <div>
           <div style={{ fontFamily: f.body, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: C.accent, fontWeight: 600, marginBottom: 14 }}>Connect</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontFamily: f.body, fontSize: 14, color: 'rgba(250,246,237,0.78)' }}>
-            <span>LinkedIn</span>
+            <a href="https://www.linkedin.com/in/michelle-wolff/" target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
             <span>Instagram</span>
-            <span>Newsletter</span>
+            <a href="contact.html" style={{ color: 'inherit', textDecoration: 'none' }}>Book</a>
           </div>
         </div>
       </div>

@@ -20,9 +20,9 @@ const AltContact = () => (
       <div className="mwc-stack-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, maxWidth: 760, margin: '0 auto' }}>
         {[
           { icon: 'mail', label: 'Email', value: 'michellewolffconsulting@gmail.com', sub: "I'll write back within a day.", href: 'mailto:michellewolffconsulting@gmail.com' },
-          { icon: 'linkedin', label: 'LinkedIn', value: 'in/michellewolff', sub: 'Connect or DM directly.', href: '#' },
+          { icon: 'linkedin', label: 'LinkedIn', value: 'in/michelle-wolff', sub: 'Connect or DM directly.', href: 'https://www.linkedin.com/in/michelle-wolff/' },
         ].map(c => (
-          <a key={c.label} href={c.href} className="mwc-contact-card" style={{
+          <a key={c.label} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener" className="mwc-contact-card" style={{
             background: C.paper, padding: 32, textDecoration: 'none',
             color: C.ink, display: 'block',
             border: `1px solid ${C.cream2}`,

@@ -262,7 +262,7 @@ const SubpageFooter = () => (
         color: 'rgba(250,246,237,0.5)',
       }}>
         <span>© 2026 Michelle Wolff Consulting LLC</span>
-        <span>michelle.wolff57@gmail.com · 000-000-0000 · Los Angeles, CA</span>
+        <span>michelle.wolff57@gmail.com · Los Angeles, CA</span>
       </div>
     </div>
   </div>
