@@ -56,162 +56,89 @@ const FormTextarea = ({ label, placeholder }) =>
   </div>;
 
 
+// Michelle's Calendly scheduling page. To change it (or after she creates her
+// account), update this one URL — everything else adapts automatically.
+// Availability is managed in Calendly (calendly.com → Availability), which
+// syncs with her Apple/iCloud calendar; bookings email both parties and land
+// on her calendar.
+const CALENDLY_URL = 'https://calendly.com/michellewolffconsulting/30min';
+
 const Booking = () => {
-  const [activeDay, setActiveDay] = React.useState(12);
-  const [activeTime, setActiveTime] = React.useState('10:30 AM');
-  // Read ?service=... so the dropdown lands on the service the user clicked from Home.
+  const widgetRef = React.useRef(null);
+  // ?service=... from the Home service cards prefills Calendly's first custom
+  // question ("What would you like to talk about?") via the a1 param.
   const presetService = React.useMemo(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('service') || '';
-    } catch {return '';}
+    try { return new URLSearchParams(window.location.search).get('service') || ''; }
+    catch { return ''; }
   }, []);
-  const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  const availableDays = [3, 5, 9, 10, 12, 16, 17, 19, 23, 24, 26];
-  const times = ['9:00 AM', '10:30 AM', '12:00 PM', '1:30 PM', '3:00 PM', '4:30 PM'];
+  const styledUrl =
+    CALENDLY_URL +
+    '?hide_gdpr_banner=1' +
+    '&background_color=ffffff' +
+    '&text_color=' + C.ink.slice(1) +
+    '&primary_color=' + C.accent.slice(1) +
+    (presetService ? '&a1=' + encodeURIComponent(presetService) : '');
+
+  React.useEffect(() => {
+    const init = () => {
+      if (window.Calendly && widgetRef.current && !widgetRef.current.hasChildNodes()) {
+        window.Calendly.initInlineWidget({ url: styledUrl, parentElement: widgetRef.current });
+      }
+    };
+    if (window.Calendly) { init(); return; }
+    const existing = document.querySelector('script[src*="assets.calendly.com"]');
+    if (existing) { existing.addEventListener('load', init); return; }
+    const s = document.createElement('script');
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    s.onload = init;
+    document.body.appendChild(s);
+  }, []);
 
   return (
     <section style={{ background: C.cream, padding: '0 0 100px' }}>
       <div className="mwc-section-pad" style={{ maxWidth: 1240, margin: '0 auto', padding: '0 48px' }}>
-        <div className="mwc-booking-grid" style={{ display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 32, alignItems: 'start' }}>
+        <div className="mwc-booking-grid" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 32, alignItems: 'start' }}>
 
-          {/* Calendar card */}
-          <div className="mwc-card" style={{ background: C.paper, padding: 40, border: `1px solid ${C.cream2}` }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-              <div>
-                <Kicker style={{ fontSize: 11 }}>Step 01 · Choose a day</Kicker>
-                <div style={{ fontFamily: f.display, fontSize: 32, marginTop: 10, color: C.ink, letterSpacing: '-0.01em' }}>
-                  November <em style={{ fontStyle: 'italic', color: C.accent }}>2026</em>
-                </div>
-              </div>
-              <div style={{ display: 'flex', gap: 8 }}>
-                <button aria-label="Previous month" style={{
-                  width: 38, height: 38, borderRadius: '50%',
-                  border: `1px solid ${C.cream2}`, background: 'transparent',
-                  cursor: 'pointer', fontSize: 16, color: C.ink
-                }}>‹</button>
-                <button aria-label="Next month" style={{
-                  width: 38, height: 38, borderRadius: '50%',
-                  border: `1px solid ${C.cream2}`, background: 'transparent',
-                  cursor: 'pointer', fontSize: 16, color: C.ink
-                }}>›</button>
-              </div>
+          {/* Live scheduler */}
+          <div className="mwc-card" style={{ background: C.paper, padding: 16, border: `1px solid ${C.cream2}` }}>
+            <div style={{ padding: '24px 24px 0' }}>
+              <Kicker style={{ fontSize: 11 }}>Pick a day &amp; time</Kicker>
             </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 6, marginBottom: 6 }}>
-              {days.map((d, i) =>
-              <div key={i} style={{
-                fontFamily: f.body, fontSize: 11, fontWeight: 600, letterSpacing: '0.18em',
-                textTransform: 'uppercase', color: C.muted, textAlign: 'center', padding: '8px 0'
-              }}>{d}</div>
-              )}
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 6 }}>
-              {Array.from({ length: 30 }).map((_, i) => {
-                const d = i + 1;
-                const isAvailable = availableDays.includes(d);
-                const isActive = activeDay === d;
-                return (
-                  <button key={i}
-                  disabled={!isAvailable}
-                  onClick={() => isAvailable && setActiveDay(d)}
-                  style={{
-                    aspectRatio: '1', borderRadius: '50%',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontFamily: f.body, fontSize: 14,
-                    cursor: isAvailable ? 'pointer' : 'default',
-                    background: isActive ? C.ink : 'transparent',
-                    color: isActive ? C.cream : isAvailable ? C.ink : 'rgba(120,114,104,0.35)',
-                    border: isAvailable && !isActive ? `1px solid ${C.cream2}` : '1px solid transparent',
-                    position: 'relative', padding: 0,
-                    transition: 'all .15s'
-                  }}>
-                    {d}
-                    {isAvailable && !isActive &&
-                    <span style={{
-                      position: 'absolute', bottom: 5, width: 4, height: 4, borderRadius: '50%',
-                      background: C.accent
-                    }} />
-                    }
-                  </button>);
-
-              })}
-            </div>
-
-            <div style={{ marginTop: 36, paddingTop: 28, borderTop: `1px solid ${C.cream2}` }}>
-              <Kicker style={{ fontSize: 11 }}>Step 02 · Pick a time</Kicker>
-              <div style={{ fontFamily: f.display, fontSize: 20, marginTop: 10, color: C.ink2, fontStyle: 'italic' }}>
-                Thursday, November {activeDay} · Pacific Time
-              </div>
-              <div className="mwc-time-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10, marginTop: 18 }}>
-                {times.map((t) => {
-                  const isActive = activeTime === t;
-                  return (
-                    <button key={t} onClick={() => setActiveTime(t)}
-                    style={{
-                      padding: '14px 12px', textAlign: 'center',
-                      fontFamily: f.body, fontSize: 13, fontWeight: 500,
-                      background: isActive ? C.accent : 'transparent',
-                      color: isActive ? C.cream : C.ink,
-                      border: `1px solid ${isActive ? C.accent : C.cream2}`,
-                      cursor: 'pointer', transition: 'all .15s'
-                    }}>
-                      {t}
-                    </button>);
-
-                })}
-              </div>
-            </div>
+            <div ref={widgetRef} style={{ minWidth: 300, height: 760 }} />
           </div>
 
-          {/* Summary + Form column */}
-          <div>
-            <div className="mwc-card" style={{ ...{ background: C.ink, color: C.cream, padding: 36, position: 'relative', overflow: 'hidden' }, background: "rgb(255, 255, 255)" }}>
-              <DiamondFade size={300} color={C.accentSoft} opacity={0.45} style={{
-                position: 'absolute', bottom: -90, right: -70, pointerEvents: 'none'
-              }} />
-              <Kicker color={C.accentSoft} style={{ fontSize: 11 }}>Your appointment</Kicker>
-              <div style={{ fontFamily: f.display, fontSize: 36, lineHeight: 1, marginTop: 14, letterSpacing: '-0.01em', position: 'relative' }}>
-                <em style={{ color: C.accent, fontStyle: 'italic' }}>Discovery Call</em>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 26, position: 'relative' }}>
-                {[
-                ['cal', `Thursday, November ${activeDay}, 2026`],
-                ['clock', `${activeTime} · 30 minutes`],
-                ['video', 'Google Meet · link emailed'],
-                ['pin', 'Pacific Time (Los Angeles)']].
-                map(([k, v]) =>
-                <div key={k} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={C.accentSoft} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                      {k === 'cal' && <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 9h18M8 3v4M16 3v4" /></>}
-                      {k === 'clock' && <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>}
-                      {k === 'video' && <><rect x="2" y="6" width="14" height="12" rx="2" /><path d="M16 10l6-3v10l-6-3" /></>}
-                      {k === 'pin' && <><path d="M12 21s-7-6-7-12a7 7 0 1114 0c0 6-7 12-7 12z" /><circle cx="12" cy="9" r="2.5" /></>}
-                    </svg>
-                    <div style={{ fontFamily: f.body, fontSize: 15, color: "rgb(58, 36, 36)" }}>{v}</div>
-                  </div>
-                )}
-              </div>
+          {/* What-to-expect card */}
+          <div className="mwc-card" style={{ background: C.paper, padding: 36, border: `1px solid ${C.cream2}`, position: 'relative', overflow: 'hidden' }}>
+            <DiamondFade size={300} color={C.accentSoft} opacity={0.45} style={{
+              position: 'absolute', bottom: -90, right: -70, pointerEvents: 'none'
+            }} />
+            <Kicker color={C.accentSoft} style={{ fontSize: 11 }}>Your appointment</Kicker>
+            <div style={{ fontFamily: f.display, fontSize: 36, lineHeight: 1, marginTop: 14, letterSpacing: '-0.01em', position: 'relative' }}>
+              <em style={{ color: C.accent, fontStyle: 'italic' }}>Discovery Call</em>
             </div>
-
-            <div className="mwc-card" style={{ background: C.paper, padding: 32, border: `1px solid ${C.cream2}`, marginTop: 16 }}>
-              <Kicker style={{ fontSize: 11 }}>Step 03 · A little context</Kicker>
-              <div style={{ fontFamily: f.display, fontSize: 22, marginTop: 10, color: C.ink, lineHeight: 1.25 }}>
-                Tell me what you're <em style={{ color: C.accent, fontStyle: 'italic' }}>working on.</em>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 18, marginTop: 24 }}>
-                <FormField label="Your name" placeholder="First and last" />
-                <FormField label="Email" placeholder="you@company.com" type="email" />
-                <FormField label="Organization" placeholder="Company / nonprofit / project" />
-                <FormSelect label="I'd like to talk about" defaultValue={presetService} options={['Strategic Sales Consulting', 'Brand Partnerships', 'Donor Relations & Fundraising', 'Done-for-you Outreach', "I'm not sure yet"]} />
-                <FormTextarea label="What's on your mind?" placeholder="A couple sentences on what you're trying to solve, change, or grow." />
-              </div>
-              <div className="mwc-form-actions" style={{ marginTop: 28, display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap' }}>
-                <Btn href="#confirm" size="md">Confirm booking →</Btn>
-                <span style={{ fontFamily: f.body, fontSize: 12, color: C.muted, letterSpacing: '0.04em' }}>
-                  Confirmation arrives in your inbox.
-                </span>
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 26, position: 'relative' }}>
+              {[
+              ['clock', '30 minutes, free'],
+              ['video', 'Video call · link emailed after booking'],
+              ['cal', 'Times shown in your own time zone'],
+              ['pin', 'Based in Los Angeles (Pacific Time)']].
+              map(([k, v]) =>
+              <div key={k} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={C.accentSoft} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                    {k === 'cal' && <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 9h18M8 3v4M16 3v4" /></>}
+                    {k === 'clock' && <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>}
+                    {k === 'video' && <><rect x="2" y="6" width="14" height="12" rx="2" /><path d="M16 10l6-3v10l-6-3" /></>}
+                    {k === 'pin' && <><path d="M12 21s-7-6-7-12a7 7 0 1114 0c0 6-7 12-7 12z" /><circle cx="12" cy="9" r="2.5" /></>}
+                  </svg>
+                  <div style={{ fontFamily: f.body, fontSize: 15, color: "rgb(58, 36, 36)" }}>{v}</div>
+                </div>
+              )}
+            </div>
+            <div style={{ fontFamily: f.body, fontSize: 13, color: C.muted, lineHeight: 1.7, marginTop: 26, paddingTop: 22, borderTop: `1px solid ${C.cream2}`, position: 'relative' }}>
+              Bring your goals, your current outreach, your questions. You'll get a
+              confirmation email the moment you book, and a personal note from
+              Michelle before the call.
             </div>
           </div>
 
