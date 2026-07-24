@@ -278,7 +278,7 @@ const Hero = () =>
         pointerEvents: 'none'
       }} />
         <div style={{ position: 'relative', width: '100%', maxWidth: 440, aspectRatio: '0.92', overflow: 'hidden' }}>
-          <img src="assets/headshot3.png" alt="Michelle Wolff" style={{
+          <img src="assets/photo-hero.jpg" alt="Michelle Wolff" style={{
           width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%',
           borderRadius: '50% / 48%',
           filter: 'contrast(1.02)'
@@ -337,7 +337,7 @@ const Pain = () =>
     <div className="mwc-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 80, alignItems: 'center' }}>
       <div className="mwc-pain-photo" style={{ position: 'relative' }}>
         <div style={{ width: '100%', aspectRatio: '0.88', overflow: 'hidden', background: C.cream2 }}>
-          <img src="assets/headshot2.jpg" alt="Michelle Wolff" style={{
+          <img src="assets/photo-approach.jpg" alt="Michelle Wolff" style={{
           width: '100%', height: '100%', objectFit: 'cover'
         }} />
         </div>

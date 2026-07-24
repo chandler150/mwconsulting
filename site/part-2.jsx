@@ -168,7 +168,7 @@ const About = () =>
       </div>
       <div style={{ position: 'relative' }}>
         <div style={{ width: '100%', aspectRatio: '0.78', overflow: 'hidden' }}>
-          <img src="assets/headshot1.png" alt="Michelle Wolff" style={{
+          <img src="assets/photo-about.jpg" alt="Michelle Wolff" style={{
           width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%'
         }} />
         </div>
