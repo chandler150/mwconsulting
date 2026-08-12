@@ -136,17 +136,21 @@ const About = () =>
         </h2>
         <GoldRule style={{ marginTop: 28, marginBottom: 28 }} />
         <p style={{ fontFamily: f.body, fontSize: 16, lineHeight: 1.75, color: C.ink2, margin: 0 }}>
-          Hi, I'm Michelle. I empower mission-driven organizations to
-          grow with confidence — through relationships, sales systems,
-          and partnerships that actually scale.
+          Hi, I'm Michelle. I help companies and organizations turn
+          big ideas and business challenges into growth.
         </p>
         <p style={{ fontFamily: f.body, fontSize: 16, lineHeight: 1.75, color: C.ink2, marginTop: 18 }}>
-          I spent nine years at Oracle, progressing across six roles
+          I spent nine years at Oracle, progressing through six roles
           from BDR to Account Director. I've closed multi-million-dollar
-          deals with Gap, Guitar Center, and managed strategic AI
-          partnerships with NVIDIA and AMD. Along the way I co-founded
-          a community giving organization and learned that the best
-          sales aren't sold — they're built, one relationship at a time.
+          deals with companies including Gap and Guitar Center, and
+          managed strategic AI partnerships with NVIDIA and AMD. Today,
+          I bring that enterprise sales experience to companies and
+          organizations that are ready to grow, scale, or solve a
+          meaningful business challenge.
+        </p>
+        <p style={{ fontFamily: f.body, fontSize: 16, lineHeight: 1.75, color: C.ink2, marginTop: 18 }}>
+          I believe great ideas do not sell themselves. They need the
+          right strategy, story, relationships, and execution.
         </p>
         <div style={{ marginTop: 32 }}>
           <Kicker color={C.ink}>Core Values</Kicker>

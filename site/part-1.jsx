@@ -259,7 +259,7 @@ const Hero = () =>
         <p style={{
         fontFamily: f.body, fontSize: 17, lineHeight: 1.65,
         color: C.ink2, maxWidth: 480, marginTop: 28
-      }}>We help purpose-driven organizations increase revenue through partnerships, connections, and by increasing visibility.
+      }}>We help companies and organizations turn big ideas and business challenges into growth through strategic sales, business development, and partnerships.
 
 
 
@@ -371,7 +371,7 @@ const Pain = () =>
         'Build a repeatable system that closes deals with confidence',
         'Land the sponsorships and strategic partnerships you want',
         'Craft outreach that feels personal and actually converts',
-        'Activate your network with me and turn it into opportunity'].
+        'Turn relationships and opportunities into measurable business growth'].
         map((item) =>
         <li key={item} style={{
           display: 'flex', alignItems: 'flex-start', gap: 14,
